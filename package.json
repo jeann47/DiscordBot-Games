@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
     "scripts": {
-      "start": "nodemon bot.js"
+      "start": "nodemon bot.js",
+      "worker": "node bot.js"
     },
     "dependencies": {
       "discord.js": "^11.5.1",
