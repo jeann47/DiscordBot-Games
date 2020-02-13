@@ -51,4 +51,4 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-client.login('Njc3MzAyNTY3NzE3NDM3NDQw.XkXbgg.Zlxti1R3p37j0lEqRRBAnmhu4So');
+client.login(process.env.LOGIN)
