@@ -27,7 +27,7 @@ client.on('message', async msg => {
     client.channels.get(`677727313659428877`).send(`
       digite "guia" a qualquer momento para saber as funções do bot.
       digite "status" para verificar o funcionamento do bot.
-      Entre na Lista de espera e digite "entrar" para jogar.
+      Entre na Lista de espera e digite "entrar" para conversar.
       digite "jogo" para definir o jogo.
       digite "jogando" para listar quem está jogando no momento.
     `)
