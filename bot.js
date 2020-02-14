@@ -31,7 +31,7 @@ client.on('message', async msg => {
 
 client.on('message', msg => {
   if(msg.content === 'jogando') {
-    client.voiceChannel('677643141871828992').members()
+    client.channels.get('677643141871828992').members()
   }
 })
 
