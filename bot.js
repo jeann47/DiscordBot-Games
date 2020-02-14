@@ -31,7 +31,7 @@ client.on('message', async msg => {
 
 client.on('message', msg => {
   if(msg.content === 'jogando') {
-    let a = lient.voiceConnections.filter((conn) => conn.server.id === 677643141871828992)[0].voiceChannel.members
+    let a = client.voiceConnections.filter((conn) => conn.server.id === 677643141871828992)[0].voiceChannel.members
     console.log(a)
   }
 })
