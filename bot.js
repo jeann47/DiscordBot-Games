@@ -31,7 +31,8 @@ client.on('message', async msg => {
 
 client.on('message', msg => {
   if(msg.content === 'jogando') {
-    msg.reply(client.channels.get('677643141871828992').members)
+    let a = lient.voiceConnections.filter((conn) => conn.server.id === 677643141871828992)[0].voiceChannel.members
+    console.log(a)
   }
 })
 
