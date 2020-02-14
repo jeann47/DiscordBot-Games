@@ -22,6 +22,11 @@ client.on('message', async msg => {
     msg.member.setVoiceChannel('677643141871828992')
   }
 })
+client.on('message', async msg => {
+  if(msg.content === 'status') {
+    msg.reply(`Estou de crocs`)
+  }
+})
 
 
 function sleep(ms) {
