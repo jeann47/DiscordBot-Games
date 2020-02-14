@@ -14,7 +14,7 @@ client.on('voiceStateUpdate', (oldMember, newMember, msg) => {
     client.channels.get(`668073025848999950`).send(`${newMember.displayName} digite "entrar" para jogar!`)
   }
 })
-
+//move to private voiceChannel
 client.on('message', async msg => {
   if(msg.content === 'entrar') {
     client.channels.get(`668073025848999950`).send(`${msg.member.displayName} entrará na conversa em 10 segundos`, {tts: true})
@@ -22,12 +22,18 @@ client.on('message', async msg => {
     msg.member.setVoiceChannel('677643141871828992')
   }
 })
+//Show if its working
 client.on('message', async msg => {
   if(msg.content === 'status') {
     msg.reply(`Estou de crocs`)
   }
 })
 
+client.on('message', msg => {
+  if(msg.content === 'jogando') {
+    client.voiceChannel('677643141871828992').members()
+  }
+})
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

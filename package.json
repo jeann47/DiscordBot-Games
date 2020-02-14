@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-    "scripts": {
-      "start": "nodemon bot.js",
-      "worker": "node bot.js"
-    },
-    "dependencies": {
-      "discord.js": "^11.5.1",
-      "ffmpeg": "^0.0.4",
-      "nodemon": "^2.0.2"
-    }
-  
+  "scripts": {
+    "start": "nodemon bot.js",
+    "worker": "node bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "ffmpeg": "^0.0.4",
+    "nodemon": "^2.0.2"
+  }
 }
