@@ -25,7 +25,6 @@ client.on('voiceStateUpdate', (oldMember, newMember, msg) => {
 })
 
 
-let sent = false
 client.on('message', async msg => {
 
   let [command, attr] = msg.content.split(' ')
@@ -59,13 +58,18 @@ client.on('message', async msg => {
 
   //move to private voiceChannel
   if(command === 'entrar' ||command === 'Entrar' ||command === 'ENTRAR') {
-    if(msg.member.voiceChannel && !sent) {
-      sent = true
-      msg.channel.send(`${msg.member.displayName} entrará na conversa em 10 segundos`, {tts: true})
-      await sleep(10000)
-      msg.member.setVoiceChannel('677643141871828992')
-      sent = false
-    }
+    let users = client.channels.get('669915711153635328').members;
+    await users.map(async user => {
+      if(user === msg.member) {
+        if(msg.member.voiceChannel && !user.sent) {
+          user.sent = true;
+          msg.channel.send(`${msg.member.displayName} entrará na conversa em 10 segundos`, {tts: true})
+          await sleep(10000)
+          msg.member.setVoiceChannel('677643141871828992')
+          user.sent = false
+        }
+      }
+    })
    
   }
   
