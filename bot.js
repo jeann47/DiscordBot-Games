@@ -16,9 +16,10 @@ client.on('voiceStateUpdate', (oldMember, newMember, msg) => {
     client.channels.get(`668073025848999950`).send(`${newMember.displayName} digite "entrar" para jogar!`)
   }
 
-  if(newMember.selfMute) {
+  if(newMember.selfMute && !oldMember.selfMute) {
     newMember.setDeaf(true)
-  } else {
+  } 
+  if(!newMember.selfMute && oldMember.selfMute) {
     newMember.setDeaf(false)
   }
 })
