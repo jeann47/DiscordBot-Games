@@ -15,6 +15,12 @@ client.on('voiceStateUpdate', (oldMember, newMember, msg) => {
   if(!oldUserChannel && newUserChannel) {
     client.channels.get(`668073025848999950`).send(`${newMember.displayName} digite "entrar" para jogar!`)
   }
+
+  if(newMember.selfMute) {
+    newMember.setDeaf(true)
+  } else {
+    newMember.setDeaf(false)
+  }
 })
 
 
@@ -50,11 +56,12 @@ client.on('message', async msg => {
   }
 
   //move to private voiceChannel
-  if(command === 'entrar') {
+  if(command === 'entrar' ||command === 'Entrar' ||command === 'ENTRAR') {
     msg.channel.send(`${msg.member.displayName} entrará na conversa em 10 segundos`, {tts: true})
     await sleep(10000)
     msg.member.setVoiceChannel('677643141871828992')
   }
+  
 })
   
 function sleep(ms) {
