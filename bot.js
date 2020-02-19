@@ -56,6 +56,10 @@ client.on('message', async msg => {
     msg.reply(`Estou de crocs`)
   }
 
+  if(command === 'GARABIN') {
+    msg.reply(`BIN GARABIN BIN`, {tts: true})
+  }
+
   //move to private voiceChannel
   if(command === 'entrar' ||command === 'Entrar' ||command === 'ENTRAR') {
     let users = client.channels.get('669915711153635328').members;
