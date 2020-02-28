@@ -1,8 +1,26 @@
 const Discord = require('discord.js');
+const request = require('request')
 const client = new Discord.Client();
+const fs = require('fs')
+
 require('dotenv/config')
 
 let game = 'nada'
+const Guide = new Discord.RichEmbed()
+    .setColor('#0099ff')
+    .setTitle('Comandos')
+    .setURL('https://discord.js.org/')
+    .setAuthor('Robertinho', 'https://i.imgur.com/NPtbcQM.png') //crocs
+    .setDescription('Lista de comandos disponíveis')
+    .addField('jogando', 'Lista todos que estão jogando no momento')
+    .addField('entrar', 'Só funciona dentro da lista de espera, usado para entrar no canal de voz')
+    .addField('automáticos', 'Ao desabilitar o microfone, seu áudio também é desabilitado', true)
+    // .addField('automáticos', 'Ao desabilitar o microfone, seu áudio também é desabilitado', true)
+    .setImage('https://i.imgur.com/9oX2b2n.jpg') //crocs
+    .setTimestamp()
+    .setFooter('Desenvolvido por Jeann Carlos Batemarque', 'https://i.imgur.com/NPtbcQM.png');
+
+
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -13,7 +31,8 @@ client.on('voiceStateUpdate', (oldMember, newMember, msg) => {
   let oldUserChannel = oldMember.voiceChannel
 
   if(!oldUserChannel && newUserChannel) {
-    client.channels.get(`668073025848999950`).send(`${newMember.displayName} digite "entrar" para jogar!`)
+    client.channels.get(`434107062381707277`).send(Guide);
+    client.channels.get(`434107062381707277`).send(`${newMember.displayName} digite "entrar" para jogar!`)
   }
 
   if(newMember.selfMute && !oldMember.selfMute) {
@@ -29,24 +48,43 @@ client.on('message', async msg => {
 
   let [command, attr] = msg.content.split(' ')
 
+  if(command === 'enviar') {
+    let file = msg.attachments.first()
+    request.get(file.url).on('error', console.error).pipe(fs.createWriteStream(`./files/${file.filename}`))
+  }
+
+  if(command === 'buscar') {
+    try {
+      const buff = fs.readFileSync(`./files/${attr}`)
+      const file = new Discord.Attachment(buff, `${attr}`);
+      msg.channel.send(file)
+    } catch(err) {
+      msg.channel.send(`arquivo ${attr} não encontrado!`)
+    }
+  }
+
+  if(command === 'cfg') {
+    try {
+      const buff = fs.readFileSync(`./files/${attr}.cfg`)
+      const cfg = new Discord.Attachment(buff, `${attr}.cfg`);
+      msg.channel.send(`Esta é a cfg de ${attr}`, cfg)
+    } catch(err) {
+      msg.channel.send(`cfg ${attr} não encontrada!`)
+    }
+  }
+
   //list the commands
   if(command === 'guia') {
-    msg.channel.send(`
-      digite "guia" a qualquer momento para saber as funções do bot.
-      digite "status" para verificar o funcionamento do bot.
-      Entre na Lista de espera e digite "entrar" para conversar.
-      digite "jogo (nome do jogo)" para definir o jogo.
-      digite "jogando" para listar quem está jogando no momento.
-    `)
+    msg.channel.send(Guide);
   }
   //set the game
   if(command === 'jogo') game = attr
 
   //List who is playing
-  if(command === 'jogando') {
+  if(command === 'jogando' || command === 'Jogando' || command === 'JOGANDO') {
     let users = client.channels.get('677643141871828992').members;
     users.map(user => {
-      msg.channel.send(`${user}`)
+      msg.channel.send(`${user}, esta é sua cfg!`, cfg)
     })
     msg.channel.send(`Estão jogando ${game}`)
   }
