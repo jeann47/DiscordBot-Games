@@ -4,9 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "pm2 start bot.js --watch",
-    "worker": "node bot.js",
+    "start": "node bot.js",
     "run": "pm2 start bot.js --watch"
+  },
+  "engines": {
+    "node": "12.16.1",
+    "npm": "*"
   },
   "dependencies": {
     "discord.js": "^11.5.1",
