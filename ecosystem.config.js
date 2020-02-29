@@ -2,10 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'API',
-      script: 'bot.js',
-
-      // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
-      args: 'one two',
+      script: './bot.js',
       instances: 'max',
       autorestart: true,
       watch: true,
