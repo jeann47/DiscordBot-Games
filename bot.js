@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
+const { resolve } = require('path');
 const Guide = require('./patterns/guide');
 const sleep = require('./util/sleep');
 const play = require('./util/play');
@@ -67,12 +68,15 @@ client.on('message', async msg => {
 
   if (command === 'enviar') {
     const file = msg.attachments.first();
-    saveFile(file.url, `./files/${file.filename}`);
+    saveFile(file.url, resolve(__dirname, 'files', file.filename));
   }
 
   if (command === 'selecionar') {
     const file = msg.attachments.first();
-    saveFile(file.url, `./waiting/${msg.member.user.username}.mp3`);
+    saveFile(
+      file.url,
+      resolve(__dirname, 'waiting', `${msg.member.user.username}.mp3`)
+    );
   }
 
   if (
@@ -82,17 +86,17 @@ client.on('message', async msg => {
   ) {
     msg.mentions.users.map(user => {
       fs.copyFileSync(
-        `./waiting/${user.username}.mp3`,
-        `./greeting/${user.username}.mp3`
+        resolve(__dirname, 'waiting', `${user.username}.mp3`),
+        resolve(__dirname, 'greeting', `${user.username}.mp3`)
       );
-      fs.unlinkSync(`./waiting/${user.username}.mp3`);
+      fs.unlinkSync(resolve(__dirname, 'waiting', `${user.username}.mp3`));
     });
   }
 
   if (command === 'buscar') {
     try {
-      const buff = fs.readFileSync(`./files/${attr}`);
-      const file = new Discord.Attachment(buff, `${attr}`);
+      const buff = fs.readFileSync(resolve(__dirname, 'files', attr));
+      const file = new Discord.Attachment(buff, attr);
       msg.channel.send(file);
     } catch (err) {
       msg.channel.send(`arquivo ${attr} não encontrado!`);
@@ -101,7 +105,7 @@ client.on('message', async msg => {
 
   if (command === 'cfg') {
     try {
-      const buff = fs.readFileSync(`./files/${attr}.cfg`);
+      const buff = fs.readFileSync(resolve(__dirname, 'files', `${attr}.cfg`));
       const cfg = new Discord.Attachment(buff, `${attr}.cfg`);
       msg.channel.send(`Esta é a cfg de ${attr}`, cfg);
     } catch (err) {
@@ -135,11 +139,14 @@ client.on('message', async msg => {
           user.sent = true;
 
           const customFile = fs.existsSync(
-            `./greeting/${msg.member.user.username}.mp3`
+            resolve(__dirname, 'greeting', `${msg.member.user.username}.mp3`)
           );
 
           if (customFile) {
-            play(`./greeting/${msg.member.user.username}.mp3`, privateChannel);
+            play(
+              resolve(__dirname, 'greeting', `${msg.member.user.username}.mp3`),
+              privateChannel
+            );
           } else {
             play(
               'https://www.youtube.com/watch?v=L_f1L1YL_pg',
