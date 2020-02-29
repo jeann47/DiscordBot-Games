@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node bot.js",
-    "run": "pm2 start bot.js --watch"
+    "start": "pm2 start bot.js --watch"
   },
   "engines": {
     "node": "12.16.1",
