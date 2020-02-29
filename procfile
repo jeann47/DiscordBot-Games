@@ -1,0 +1,1 @@
+run: pm2 start bot.js --watch
