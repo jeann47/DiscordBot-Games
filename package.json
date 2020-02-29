@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon bot.js",
+    "start": "pm2 start bot.js --watch",
     "run": "pm2 start bot.js --watch"
   },
   "engines": {
