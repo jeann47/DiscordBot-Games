@@ -13,6 +13,10 @@ function Guide() {
       'Só funciona dentro da lista de espera, usado para entrar no canal de voz'
     )
     .addField(
+      'selecionar',
+      'Ao enviar um áudio com o texto "selecionar", este áudio poderá ser ouvido por todos quando você entrar no canal'
+    )
+    .addField(
       'enviar',
       'Ao enviar um arquivo no chat com o texto "enviar", esse arquivo é salvo'
     )
@@ -26,7 +30,7 @@ function Guide() {
       'Ao desabilitar o microfone, seu áudio também é desabilitado',
       true
     )
-    .setImage('https://i.imgur.com/9oX2b2n.jpg') // crocs
+    .setImage('https://media.giphy.com/media/tbyi455ahTA6A/giphy.gif') // frog
     .setTimestamp()
     .setFooter(
       'Desenvolvido por Jeann Carlos Batemarque',

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon bot.js",
+    "start": "pm2 start bot.js --watch",
     "worker": "node bot.js"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "ffmpeg": "^0.0.4",
     "node-opus": "^0.3.3",
     "nodemon": "^2.0.2",
+    "pm2": "^4.2.3",
     "request": "^2.88.2",
     "ytdl-core": "^2.0.0"
   },
