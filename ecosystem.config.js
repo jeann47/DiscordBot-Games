@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'API',
       script: './bot.js',
-      instances: 'max',
+      instances: 1,
       autorestart: true,
       watch: true,
       env: {
