@@ -1,7 +1,7 @@
 {
   "name": "discord",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "bot.js",
   "license": "MIT",
   "scripts": {
     "start": "pm2-runtime start ecosystem.config.js --env production",

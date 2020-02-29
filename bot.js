@@ -75,7 +75,7 @@ client.on('message', async msg => {
     const file = msg.attachments.first();
     saveFile(
       file.url,
-      resolve(__dirname, 'waiting', `${msg.member.user.username}.mp3`)
+      resolve(process.cwd(), 'waiting', `${msg.member.user.username}.mp3`)
     );
   }
 
