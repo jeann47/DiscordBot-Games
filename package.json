@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "pm2 start bot.js --watch",
-    "worker": "node bot.js"
+    "worker": "node bot.js",
+    "run": "pm2 start bot.js --watch"
   },
   "dependencies": {
     "discord.js": "^11.5.1",
